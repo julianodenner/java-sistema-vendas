@@ -8,14 +8,14 @@ package com.jdenner.to;
 public class ItemCompra {
 
     private int codigo;
-    private Compra venda;
+    private Compra compra;
     private Produto produto;
     private int quantidade;
     private Double valorUnitario;
 
     public ItemCompra() {
         this.codigo = 0;
-        this.venda = new Compra();
+        this.compra = new Compra();
         this.produto = new Produto();
         this.quantidade = 0;
         this.valorUnitario = 0.0;
@@ -23,7 +23,7 @@ public class ItemCompra {
 
     public ItemCompra(int codigo) {
         this.codigo = codigo;
-        this.venda = new Compra();
+        this.compra = new Compra();
         this.produto = new Produto();
         this.quantidade = 0;
         this.valorUnitario = 0.0;
@@ -38,11 +38,11 @@ public class ItemCompra {
     }
 
     public Compra getCompra() {
-        return venda;
+        return compra;
     }
 
-    public void setCompra(Compra venda) {
-        this.venda = venda;
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 
     public Produto getProduto() {

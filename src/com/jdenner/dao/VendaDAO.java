@@ -60,6 +60,13 @@ public class VendaDAO implements IDAO<Venda> {
         ps.setInt(5, venda.getCodigo());
         ps.execute();
 
+        for (ItemVenda iv : venda.getItensRemover()) {
+            sql = "DELETE FROM TBITEMVENDA WHERE CODIGO=?";
+            ps = c.getConexao().prepareStatement(sql);
+            ps.setInt(1, iv.getCodigo());
+            ps.execute();
+        }
+
         for (ItemVenda iv : venda.getItens()) {
             if (iv.getCodigo() == 0) {
                 sql = "INSERT INTO TBITEMVENDA (CODIGOPRODUTO, CODIGOVENDA, QUANTIDADE, VALORUNITARIO) VALUES (?, ?, ?, ?)";
@@ -84,13 +91,6 @@ public class VendaDAO implements IDAO<Venda> {
                 ProdutoDAO produtoDAO = new ProdutoDAO();
                 produtoDAO.saidaEstoque(c, iv.getProduto().getCodigo(), iv.getQuantidade());
             }
-        }
-
-        for (ItemVenda iv : venda.getItensRemover()) {
-            sql = "DELETE FROM TBITEMVENDA WHERE CODIGO=?";
-            ps = c.getConexao().prepareStatement(sql);
-            ps.setInt(1, iv.getCodigo());
-            ps.execute();
         }
 
         c.confirmar();

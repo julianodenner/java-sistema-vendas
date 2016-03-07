@@ -60,6 +60,13 @@ public class CompraDAO implements IDAO<Compra> {
         ps.setInt(5, compra.getCodigo());
         ps.execute();
 
+        for (ItemCompra iv : compra.getItensRemover()) {
+            sql = "DELETE FROM TBITEMCOMPRA WHERE CODIGO=?";
+            ps = c.getConexao().prepareStatement(sql);
+            ps.setInt(1, iv.getCodigo());
+            ps.execute();
+        }
+
         for (ItemCompra iv : compra.getItens()) {
             if (iv.getCodigo() == 0) {
                 sql = "INSERT INTO TBITEMCOMPRA (CODIGOPRODUTO, CODIGOCOMPRA, QUANTIDADE, VALORUNITARIO) VALUES (?, ?, ?, ?)";
@@ -84,13 +91,6 @@ public class CompraDAO implements IDAO<Compra> {
                 ProdutoDAO produtoDAO = new ProdutoDAO();
                 produtoDAO.entradaEstoque(c, iv.getProduto().getCodigo(), iv.getQuantidade());
             }
-        }
-
-        for (ItemCompra iv : compra.getItensRemover()) {
-            sql = "DELETE FROM TBITEMCOMPRA WHERE CODIGO=?";
-            ps = c.getConexao().prepareStatement(sql);
-            ps.setInt(1, iv.getCodigo());
-            ps.execute();
         }
 
         c.confirmar();

@@ -387,6 +387,7 @@ public class LancamentoCompra extends javax.swing.JInternalFrame {
         if (validarFormularioItens()) {
             ItemCompra iv = new ItemCompra();
             iv.setProduto((Produto) ftfProduto.getValue());
+            iv.setCompra(compra);
             iv.setQuantidade((int) spQuantidade.getValue());
             iv.setValorUnitario((Double) ftfValorUnitario.getValue());
 
