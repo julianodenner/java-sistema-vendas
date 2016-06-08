@@ -10,3 +10,5 @@
     <li>Windows 7 Professional sp1</li>
   </ul>
 </p>
+<p>Pré-visualização:</p>
+<img src="http://jdenner.com/resources/java-sistema-vendas.png" alt="Calculadora executando">
