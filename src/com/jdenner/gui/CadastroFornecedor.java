@@ -182,7 +182,7 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validarFormulario()) {
             fornecedor.setNome(ftfNome.getText().trim());
-            fornecedor.setCnpj((String) ftfCnpj.getValue());
+            fornecedor.setCnpj(ftfCnpj.getText());
 
             if (fornecedor.getCodigo() == 0) {
                 try {
