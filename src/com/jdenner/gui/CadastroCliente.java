@@ -203,7 +203,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validarFormulario()) {
             cliente.setNome(ftfNome.getText().trim());
-            cliente.setCpf((String) ftfCpf.getValue());
+            cliente.setCpf(ftfCpf.getText());
             cliente.setDataNascimento((Date) ftfDataNascimento.getValue());
 
             if (cliente.getCodigo() == 0) {
