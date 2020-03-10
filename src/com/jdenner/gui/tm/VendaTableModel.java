@@ -15,7 +15,7 @@ public class VendaTableModel extends AbstractTableModel {
 
     private final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
     private final NumberFormat NFC = NumberFormat.getCurrencyInstance();
-    private String colunas[] = {"Cliente", "Data", "Valor", "Situação"};
+    private String colunas[] = {"Cliente", "Produto(s)", "Data", "Valor", "Situação"};
     private List<Venda> dados;
 
     @Override
@@ -38,10 +38,19 @@ public class VendaTableModel extends AbstractTableModel {
             case 0:
                 return venda.getCliente().getNome();
             case 1:
-                return SDF.format(venda.getDataVenda());
+                String produtos = "";
+                for(int i=0; i<venda.getItens().size(); i++) {
+                    produtos += venda.getItens().get(i).getProduto().getNome() + " - " + venda.getItens().get(i).getQuantidade();
+                    if(i < venda.getItens().size() - 1) {
+                        produtos += ", ";
+                    }
+                }
+                return produtos;
             case 2:
-                return NFC.format(venda.getValorTotal());
+                return SDF.format(venda.getDataVenda());
             case 3:
+                return NFC.format(venda.getValorTotal());
+            case 4:
                 return venda.getSituacao();
             default:
                 throw new IndexOutOfBoundsException("Coluna inexistente!");
